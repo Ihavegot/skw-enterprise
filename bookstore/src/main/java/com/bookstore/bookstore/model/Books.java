@@ -1,5 +1,6 @@
 package com.bookstore.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Generated;
@@ -17,5 +18,4 @@ public class Books {
     private String title;
     private String author;
     private String genre;
-
 }
