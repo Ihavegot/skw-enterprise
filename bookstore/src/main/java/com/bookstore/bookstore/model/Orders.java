@@ -15,8 +15,10 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userId;
-    private Date order_date;
+    private long uid;
+    private Date orderdate;
+    private String city;
+    private String postcode;
     private String address;
     @OneToMany(targetEntity = Books.class)
     private List<Books> books = new ArrayList<>();

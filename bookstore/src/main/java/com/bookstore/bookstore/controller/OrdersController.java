@@ -11,12 +11,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrdersController {
     private final OrdersService ordersService;
-    @GetMapping("/orders/{id}")
-    public List<Orders> getOrders(@PathVariable long id){
-        return ordersService.getOrders(id);
+    @GetMapping("/orders")
+    public List<Orders> getAllOrders(){
+        return ordersService.getAllUsersOrders();
     }
-    @PostMapping("/addOrders")
+    @GetMapping("/orders/{uid}")
+    public List<Orders> getSingleOrder(@PathVariable long uid){
+        return ordersService.getSingleUserOrders(uid);
+    }
+    @PostMapping("/orders")
     public Orders addOrders(@RequestBody Orders order){
         return ordersService.addOrders(order);
+    }
+    @DeleteMapping("/orders/{id}")
+    public void deleteOrders(@PathVariable long id){
+        ordersService.deleteOrders(id);
     }
 }

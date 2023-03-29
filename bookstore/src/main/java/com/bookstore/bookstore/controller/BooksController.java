@@ -15,6 +15,7 @@ public class BooksController {
 
     @GetMapping("/books")
     public List<Books> getAllBooks(){
+        // TODO: pagination
         return booksService.getAllBooks();
     }
 
@@ -23,19 +24,19 @@ public class BooksController {
         return booksService.getSingleBook(id);
     }
 
-    @PostMapping("/addBook")
+    @PostMapping("/books")
     public Books addSingleBook(@RequestBody Books book){
         return booksService.addSignleBook(book);
     }
 
-    @PostMapping("/updateBook")
+    @PutMapping("/books")
     public Optional<Books> updateSingleBook(@RequestBody Books book){
         return booksService.updateSingleBook(book);
     }
 
-    @PostMapping("/deleteBook")
-    public void deleteSingleBook(@RequestBody Books book){
-        booksService.deleteSingleBook(book);
+    @DeleteMapping("/books/{id}")
+    public void deleteSingleBook(@PathVariable long id){
+        booksService.deleteSingleBook(id);
     }
 
 }

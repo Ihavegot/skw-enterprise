@@ -11,10 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrdersService {
     private final OrdersRepository ordersRepository;
-    public List<Orders> getOrders(long id){
-        return ordersRepository.findAllByUserId(id);
+    public List<Orders> getAllUsersOrders(){
+        return ordersRepository.findAll();
+    }
+    public List<Orders> getSingleUserOrders(long uid){
+        return ordersRepository.findAllByUid(uid);
     }
     public Orders addOrders(Orders order){
         return ordersRepository.save(order);
+    }
+    public void deleteOrders(long id){
+        ordersRepository.deleteById(id);
     }
 }

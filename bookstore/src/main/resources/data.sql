@@ -27,24 +27,10 @@ insert into books (title, author, genre) values ('Born to Defense (Zhong hua yin
 insert into books (title, author, genre) values ('Terminator, The', 'Kahlil Poad', 'Action|Sci-Fi|Thriller');
 insert into books (title, author, genre) values ('Urgh! A Music War', 'Emmanuel Weld', 'Documentary');
 insert into books (title, author, genre) values ('Blitz', 'Lexy Tokell', 'Action|Crime|Thriller');
-insert into books (title, author, genre) values ('Curse of Frankenstein, The', 'Cirilo Varvell', 'Horror');
-insert into books (title, author, genre) values ('Fly Me to the Moon', 'Darla Gratrex', 'Adventure|Animation|Children|IMAX');
-insert into books (title, author, genre) values ('Zarafa', 'Ganny Beddows', 'Animation');
-insert into books (title, author, genre) values ('Extremely Goofy Movie, An', 'Grenville Paladini', 'Animation|Children|Comedy');
-insert into books (title, author, genre) values ('Bushwhacked', 'Myrlene Loxley', 'Adventure|Comedy|Crime|Mystery');
-insert into books (title, author, genre) values ('Eve of Destruction', 'Ginni Emanson', 'Action|Sci-Fi|Thriller');
-insert into books (title, author, genre) values ('Tapped', 'Nisse Garrold', 'Documentary');
-insert into books (title, author, genre) values ('Deadline', 'Janith Corrison', 'Documentary');
-insert into books (title, author, genre) values ('Women Art Revolution', 'Adolphe Cornau', 'Documentary');
-insert into books (title, author, genre) values ('Que Viva Mexico (¡Que Viva Mexico! - Da zdravstvuyet Meksika!)', 'Dene Ping', 'Documentary');
-insert into books (title, author, genre) values ('Sonny Boy', 'Gawain Clinton', 'Action|Drama|Thriller');
-insert into books (title, author, genre) values ('My House in Umbria', 'Dalt Klemmt', 'Drama');
-insert into books (title, author, genre) values ('Hum Tum', 'Laural De Zamudio', 'Comedy|Drama|Musical|Romance');
-insert into books (title, author, genre) values ('Double Dynamite', 'Dalila Doughtery', 'Comedy|Musical');
-insert into books (title, author, genre) values ('Hey Bartender', 'Esta Farney', 'Documentary');
-insert into books (title, author, genre) values ('Canterbury Tale, A', 'Shaw Seabert', 'Drama|Mystery|War');
-insert into books (title, author, genre) values ('Hero (Ying xiong)', 'Mellicent Stump', 'Action|Adventure|Drama');
-insert into books (title, author, genre) values ('Bakery Girl of Monceau, The (La boulangère de Monceau)', 'Cherice McKernon', 'Romance');
-insert into books (title, author, genre) values ('Man with the Golden Arm, The', 'Duky Badcock', 'Drama');
-insert into books (title, author, genre) values ('Favela Rising', 'Carena Claw', 'Documentary');
-insert into books (title, author, genre) values ('Report to the Commissioner', 'Rochelle Blasio', 'Crime|Drama');
+
+insert into users (username, password, email) values ('suwuperreader123', 'booklover123', 'bookmaniac@example.com');
+
+insert into orders (uid, orderdate, city, postcode, address) values (1, current_date, 'Lublin', '20-100', 'ul.Motylowa 9');
+
+insert into orders_books (orders_id, books_id) values (1, 10);
+insert into orders_books (orders_id, books_id) values (1, 20);

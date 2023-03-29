@@ -41,9 +41,8 @@ public class BooksService {
         });
     }
 
-    public void deleteSingleBook(Books book){
-        // This works weird, fix it if u get better solution
-        booksRepository.deleteById(book.getId());
+    public void deleteSingleBook(long id){
+        booksRepository.deleteById(id);
     }
 
 }
