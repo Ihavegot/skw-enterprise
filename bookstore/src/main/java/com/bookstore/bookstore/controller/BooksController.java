@@ -3,9 +3,9 @@ package com.bookstore.bookstore.controller;
 import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.service.BooksService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -13,13 +13,12 @@ import java.util.Optional;
 public class BooksController {
     private final BooksService booksService;
 
-    @GetMapping("/books")
-    public List<Books> getAllBooks(){
-        // TODO: pagination
-        return booksService.getAllBooks();
+    @GetMapping("/books/{offset}/{size}")
+    public Page<Books> getAllBooks(@PathVariable int offset, @PathVariable int size){
+        return booksService.getAllBooks(offset, size);
     }
 
-    @GetMapping("/books/{id}")
+    @GetMapping("/books/id/{id}")
     public Books getSingleBook(@PathVariable long id){
         return booksService.getSingleBook(id);
     }

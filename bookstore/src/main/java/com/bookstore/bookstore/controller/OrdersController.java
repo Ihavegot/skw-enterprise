@@ -3,6 +3,7 @@ package com.bookstore.bookstore.controller;
 import com.bookstore.bookstore.model.Orders;
 import com.bookstore.bookstore.service.OrdersService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,11 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrdersController {
     private final OrdersService ordersService;
-    @GetMapping("/orders")
-    public List<Orders> getAllOrders(){
-        return ordersService.getAllUsersOrders();
+    @GetMapping("/orders/{offset}/{size}")
+    public Page<Orders> getAllOrders(@PathVariable int offset, @PathVariable int size){
+        return ordersService.getAllUsersOrders(offset, size);
     }
-    @GetMapping("/orders/{uid}")
+    @GetMapping("/orders/uid/{uid}")
     public List<Orders> getSingleOrder(@PathVariable long uid){
         return ordersService.getSingleUserOrders(uid);
     }

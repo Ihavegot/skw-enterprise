@@ -4,9 +4,10 @@ package com.bookstore.bookstore.service;
 import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.repository.BooksRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +15,8 @@ import java.util.Optional;
 public class BooksService {
     private final BooksRepository booksRepository;
 
-    public List<Books> getAllBooks(){
-        return booksRepository.findAll();
+    public Page<Books> getAllBooks(int offset, int size){
+        return  booksRepository.findAll(PageRequest.of(offset, size));
     }
 
     public Books getSingleBook(long id){
