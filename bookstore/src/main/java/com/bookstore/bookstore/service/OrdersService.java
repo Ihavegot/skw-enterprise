@@ -1,6 +1,5 @@
 package com.bookstore.bookstore.service;
 
-import com.bookstore.bookstore.CustomUser;
 import com.bookstore.bookstore.DTO.DOrders;
 import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.model.Customers;
@@ -8,13 +7,9 @@ import com.bookstore.bookstore.model.Orders;
 import com.bookstore.bookstore.repository.CustomersRepository;
 import com.bookstore.bookstore.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -43,11 +38,6 @@ public class OrdersService {
         newOrder.setPostcode(dOrder.getPostCode());
         newOrder.setAddress(dOrder.getAddress());
 
-        List<Books> orderedBooks = new ArrayList<>();
-        for(Long bid: dOrder.getBooks()){
-            orderedBooks.add(booksService.getSingleBook(bid));
-        }
-        newOrder.setBooks(orderedBooks);
         newOrder.setOrderdate(Calendar.getInstance().getTime());
 
         return ordersRepository.save(newOrder);

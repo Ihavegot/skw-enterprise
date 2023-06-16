@@ -101,7 +101,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/h2-console/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/books/**").permitAll()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.HEAD, "/**").permitAll()
@@ -115,6 +115,7 @@ public class SecurityConfig {
                     UserDetails user = userDetailsService.loadUserByUsername(token.getSubject());
                     return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                 })));
+        httpSecurity.headers().frameOptions().disable();
         return httpSecurity.build();
     }
 
