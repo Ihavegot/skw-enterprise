@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class DOrders {
-    private Long uid;
     private String city;
     private String postCode;
     private String address;

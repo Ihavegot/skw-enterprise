@@ -28,7 +28,8 @@ insert into books (title, author, genre) values ('Terminator, The', 'Kahlil Poad
 insert into books (title, author, genre) values ('Urgh! A Music War', 'Emmanuel Weld', 'Documentary');
 insert into books (title, author, genre) values ('Blitz', 'Lexy Tokell', 'Action|Crime|Thriller');
 
-insert into customers (username, password, email) values ('suwuperreader123', 'booklover123', 'bookmaniac@example.com');
+insert into customers (username, password, email, authorities) values ('superreader123', '{noop}superreader123', 'superreader123@example.com', 'ROLE_USER');
+insert into customers (username, password, email, authorities) values ('lukasz123', '{noop}lukasz123', 'lukasz123@example.com', 'ROLE_ADMIN');
 
 insert into orders (uid, orderdate, city, postcode, address) values (1, current_date, 'Lublin', '20-100', 'ul.Motylowa 9');
 
