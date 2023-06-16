@@ -5,32 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae5970d7-e7e5-4f8d-b4dc-2c49e531c18a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/java/com/bookstore/bookstore/Config/WebConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/java/com/bookstore/bookstore/controller/BooksController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/java/com/bookstore/bookstore/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/java/com/bookstore/bookstore/model/Books.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/java/com/bookstore/bookstore/repository/BooksRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/java/com/bookstore/bookstore/service/BooksService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore/src/main/resources/data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bookstore_site.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/hello.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/Home.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bookstore/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../bookstore/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bookstore/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../bookstore/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/books.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/background.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/getbooks.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/Home.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,25 +29,28 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2NCMqNWZ08AKOooC1bFjIxed8WH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Lukasz/Desktop/kwachu/bookstore_site",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lukasz/Desktop/kwachu/bookstore_site&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -113,6 +101,11 @@
       <workItem from="1679163802564" duration="2747000" />
       <workItem from="1679392227417" duration="1867000" />
       <workItem from="1679772458005" duration="203000" />
+      <workItem from="1680366499471" duration="278000" />
+      <workItem from="1680383213900" duration="2343000" />
+      <workItem from="1680447969079" duration="4049000" />
+      <workItem from="1680457883358" duration="371000" />
+      <workItem from="1680550368639" duration="13000" />
     </task>
     <servers />
   </component>

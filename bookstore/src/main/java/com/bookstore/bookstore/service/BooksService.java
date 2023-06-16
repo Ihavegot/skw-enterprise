@@ -1,11 +1,13 @@
 package com.bookstore.bookstore.service;
 
 
+import com.bookstore.bookstore.DTO.DBooks;
 import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.repository.BooksRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,28 +17,32 @@ import java.util.Optional;
 public class BooksService {
     private final BooksRepository booksRepository;
 
-    public Page<Books> getAllBooks(int offset, int size){
-        return  booksRepository.findAll(PageRequest.of(offset, size));
+    public Page<Books> getAllBooks(Pageable pageable){
+        return booksRepository.findAll(pageable);
     }
 
     public Books getSingleBook(long id){
         return booksRepository.findById(id).orElseThrow();
     }
 
-    public Books addSignleBook(Books book){
-        return booksRepository.save(book);
+    public Books addSignleBook(DBooks dBooks){
+        Books newBook = new Books();
+        newBook.setTitle(dBooks.getTitle());
+        newBook.setAuthor(dBooks.getAuthor());
+        newBook.setGenre(dBooks.getGenre());
+        return booksRepository.save(newBook);
     }
 
-    public Optional<Books> updateSingleBook(Books book){
-        return booksRepository.findById(book.getId()).map(b -> {
-            if (book.getAuthor() != null) {
-                b.setAuthor(book.getAuthor());
+    public Optional<Books> updateSingleBook(Long id, DBooks dBooks){
+        return booksRepository.findById(id).map(b -> {
+            if (dBooks.getAuthor() != null) {
+                b.setAuthor(dBooks.getAuthor());
             }
-            if(book.getTitle() != null){
-                b.setTitle(book.getTitle());
+            if(dBooks.getTitle() != null){
+                b.setTitle(dBooks.getTitle());
             }
-            if(book.getGenre() != null){
-                b.setGenre(book.getGenre());
+            if(dBooks.getGenre() != null){
+                b.setGenre(dBooks.getGenre());
             }
             return booksRepository.save(b);
         });

@@ -1,9 +1,12 @@
 package com.bookstore.bookstore.controller;
 
+import com.bookstore.bookstore.DTO.DBooks;
 import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.service.BooksService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -13,26 +16,27 @@ import java.util.Optional;
 public class BooksController {
     private final BooksService booksService;
 
-    @GetMapping("/books/{offset}/{size}")
-    public Page<Books> getAllBooks(@PathVariable int offset, @PathVariable int size){
-        return booksService.getAllBooks(offset, size);
+    // Everyone
+    @GetMapping("/books")
+    public Page<Books> getAllBooks(@ParameterObject Pageable pageable){
+        return booksService.getAllBooks(pageable);
     }
-
-    @GetMapping("/books/id/{id}")
+    // Everyone
+    @GetMapping("/books/{id}")
     public Books getSingleBook(@PathVariable long id){
         return booksService.getSingleBook(id);
     }
-
+    // Only logged admin
     @PostMapping("/books")
-    public Books addSingleBook(@RequestBody Books book){
-        return booksService.addSignleBook(book);
+    public Books addSingleBook(@RequestBody DBooks dBooks){
+        return booksService.addSignleBook(dBooks);
     }
-
-    @PutMapping("/books")
-    public Optional<Books> updateSingleBook(@RequestBody Books book){
-        return booksService.updateSingleBook(book);
+    // Only logged admin
+    @PutMapping("/books/{id}")
+    public Optional<Books> updateSingleBook(@PathVariable Long id, @RequestBody DBooks dBooks){
+        return booksService.updateSingleBook(id, dBooks);
     }
-
+    // Only logged admin
     @DeleteMapping("/books/{id}")
     public void deleteSingleBook(@PathVariable long id){
         booksService.deleteSingleBook(id);
