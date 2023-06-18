@@ -17,12 +17,11 @@ import java.util.Set;
 public class ShoppingCartsService {
     private final ShoppingCartsRepository shoppingCartsRepository;
     private final BooksService booksService;
-    public Optional<ShoppingCarts> getCart(long id){
-        return shoppingCartsRepository.findById(id);
+    public Optional<ShoppingCarts> getCart(long uid){
+        return shoppingCartsRepository.findById(uid);
     }
     public ShoppingCarts addToCart(long uid, List<DShoppingCart> dShoppingCartList){
-//        ShoppingCarts userCart = shoppingCartsRepository.findByUid(uid);
-        ShoppingCarts userCart = new ShoppingCarts();
+        ShoppingCarts userCart = shoppingCartsRepository.findByUid(uid);
         userCart.setUid(uid);
 
         Set<CartItems> cartItemsSet = new HashSet<>();
@@ -35,14 +34,17 @@ public class ShoppingCartsService {
         userCart.setCartItems(cartItemsSet);
 
         double totalPrice = 0;
-        int itemsNumber = 0;
         for(CartItems ci:cartItemsSet){
-            totalPrice += ci.getBooks().getPrice();
-            itemsNumber++;
+            totalPrice += ci.getBooks().getPrice() * ci.getQuantity();
         }
         userCart.setTotalPrice(totalPrice);
-        userCart.setItemsNumber(itemsNumber);
 
+        return shoppingCartsRepository.save(userCart);
+    }
+    public ShoppingCarts emptyCart(long uid){
+        ShoppingCarts userCart = shoppingCartsRepository.findByUid(uid);
+        userCart.setTotalPrice(0.0);
+        userCart.getCartItems().clear();
         return shoppingCartsRepository.save(userCart);
     }
 }

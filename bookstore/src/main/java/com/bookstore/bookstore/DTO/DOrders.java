@@ -13,5 +13,4 @@ public class DOrders {
     private String city;
     private String postCode;
     private String address;
-    private List<Long> books;
 }

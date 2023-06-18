@@ -11,3 +11,6 @@ insert into books (title, author, genre, price) values ('Little Vampire, The', '
 
 insert into customers (username, password, email, authorities) values ('superreader123', '{noop}superreader123', 'superreader123@example.com', 'ROLE_USER');
 insert into customers (username, password, email, authorities) values ('lukasz123', '{noop}lukasz123', 'lukasz123@example.com', 'ROLE_ADMIN');
+
+insert into shopping_carts(uid, total_price) values (1, 0.0);
+insert into shopping_carts(uid, total_price) values (2, 0.0);

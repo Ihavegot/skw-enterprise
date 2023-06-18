@@ -13,12 +13,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ShoppingCartsController {
     private final ShoppingCartsService shoppingCartsService;
-    @GetMapping("/shoppingCarts/{id}")
-    public Optional<ShoppingCarts> getSingleCart(@PathVariable long id){
-        return shoppingCartsService.getCart(id);
+    @GetMapping("/shoppingCarts/{uid}")
+    public Optional<ShoppingCarts> getSingleCart(@PathVariable long uid){
+        return shoppingCartsService.getCart(uid);
     }
     @PostMapping("/shoppingCarts/{uid}")
     public ShoppingCarts addToCart(@PathVariable long uid, @RequestBody List<DShoppingCart> dShoppingCartList){
         return shoppingCartsService.addToCart(uid, dShoppingCartList);
     }
+    @PatchMapping("shoppingCart/{uid}")
+    public ShoppingCarts emptyCart(@PathVariable long uid){
+        return shoppingCartsService.emptyCart(uid);
+    }
+    // TODO: edit cart
 }

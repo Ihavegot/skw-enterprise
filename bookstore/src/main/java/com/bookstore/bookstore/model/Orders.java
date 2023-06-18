@@ -1,12 +1,14 @@
 package com.bookstore.bookstore.model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.Order;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,6 +23,7 @@ public class Orders {
     private String postcode;
     private String address;
     private Double totalPrice;
-    @OneToMany(targetEntity = Books.class)
-    private List<Books> books = new ArrayList<>();
+    private String status;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<CartItems> cartItems;
 }

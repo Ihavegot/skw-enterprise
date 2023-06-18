@@ -15,10 +15,7 @@ public class ShoppingCarts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long uid;
-    @Transient
     private Double totalPrice;
-    @Transient
-    private int itemsNumber;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<CartItems> cartItems;
 }
