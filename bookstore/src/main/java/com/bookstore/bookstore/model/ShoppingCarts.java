@@ -4,23 +4,21 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-public class Orders {
+public class ShoppingCarts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long uid;
-    private Date orderdate;
-    private String city;
-    private String postcode;
-    private String address;
+    @Transient
     private Double totalPrice;
-    @OneToMany(targetEntity = Books.class)
-    private List<Books> books = new ArrayList<>();
+    @Transient
+    private int itemsNumber;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<CartItems> cartItems;
 }

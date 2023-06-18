@@ -1,20 +1,24 @@
 package com.bookstore.bookstore.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-public class Baskets {
+@AllArgsConstructor
+public class CartItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long uid;
-    @ManyToMany(targetEntity = Books.class)
-    private List<Books> books = new ArrayList<>();
+    private int quantity;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Books books;
+    public CartItems() {
+
+    }
 }
