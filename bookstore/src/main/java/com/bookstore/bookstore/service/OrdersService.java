@@ -1,5 +1,6 @@
 package com.bookstore.bookstore.service;
 
+import com.bookstore.bookstore.DTO.DOrderState;
 import com.bookstore.bookstore.DTO.DOrders;
 import com.bookstore.bookstore.model.*;
 import com.bookstore.bookstore.repository.CustomersRepository;
@@ -37,7 +38,7 @@ public class OrdersService {
         newOrder.setCity(dOrder.getCity());
         newOrder.setPostcode(dOrder.getPostCode());
         newOrder.setAddress(dOrder.getAddress());
-
+        // Todo: fix optional
         Optional<ShoppingCarts> userShoppingCart = shoppingCartsService.getCart(getCurrentUid());
         Set<CartItems> cartItemsSet = userShoppingCart.get().getCartItems();
         newOrder.setCartItems(new HashSet<>());
@@ -49,6 +50,14 @@ public class OrdersService {
         newOrder.setStatus("CONFIRMING ORDER");
         shoppingCartsService.emptyCart(getCurrentUid());
         return ordersRepository.save(newOrder);
+    }
+    public Orders updateOrderState(long id, DOrderState state){
+        Optional<Orders> orders = ordersRepository.findById(id);
+        if(orders.isPresent()){
+            orders.get().setStatus(state.getState());
+            return ordersRepository.save(orders.get());
+        }
+        return null;
     }
     public void deleteOrders(long id){
         ordersRepository.deleteById(id);

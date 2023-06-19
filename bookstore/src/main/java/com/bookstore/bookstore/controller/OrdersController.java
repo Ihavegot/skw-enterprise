@@ -1,5 +1,6 @@
 package com.bookstore.bookstore.controller;
 
+import com.bookstore.bookstore.DTO.DOrderState;
 import com.bookstore.bookstore.DTO.DOrders;
 import com.bookstore.bookstore.model.Orders;
 import com.bookstore.bookstore.service.OrdersService;
@@ -33,5 +34,8 @@ public class OrdersController {
     public void deleteOrders(@PathVariable long id){
         ordersService.deleteOrders(id);
     }
-    // TODO: update order
+    @PatchMapping("orders/{id}")
+    public Orders updateOrderState(@PathVariable long id, @RequestBody DOrderState state){
+        return ordersService.updateOrderState(id, state);
+    }
 }
