@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomersController {
     private final CustomersService customersService;
+    // TODO: get all customers
     @GetMapping("/customers/{id}")
     @Operation(summary = "Get single customer by user id")
     public Optional<Customers> getSingleCustomer(@PathVariable long id){

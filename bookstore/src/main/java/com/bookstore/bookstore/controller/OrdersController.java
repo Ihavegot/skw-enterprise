@@ -34,12 +34,13 @@ public class OrdersController {
     public Orders addOrders(@RequestBody DOrders dOrder){
         return ordersService.addOrders(dOrder);
     }
-    // Only logged admin
-    @DeleteMapping("/orders/{id}")
-    @Operation(summary = "Update order by order id")
-    public void deleteOrders(@PathVariable long id){
-        ordersService.deleteOrders(id);
-    }
+//    ------------------------------------------------------------------------------------------------------------------
+//    @DeleteMapping("/orders/{id}")
+//    @Operation(summary = "Delete order by order id")
+//    public void deleteOrders(@PathVariable long id){
+//        ordersService.deleteOrders(id);
+//    }
+//    ------------------------------------------------------------------------------------------------------------------
     // Only logged admin
     @PatchMapping("orders/{id}")
     @Operation(summary = "Update order by order id")

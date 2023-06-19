@@ -38,7 +38,6 @@ public class OrdersService {
         newOrder.setCity(dOrder.getCity());
         newOrder.setPostcode(dOrder.getPostCode());
         newOrder.setAddress(dOrder.getAddress());
-        // Todo: fix optional
         Optional<ShoppingCarts> userShoppingCart = shoppingCartsService.getCart(getCurrentUid());
         Set<CartItems> cartItemsSet = userShoppingCart.get().getCartItems();
         newOrder.setCartItems(new HashSet<>());

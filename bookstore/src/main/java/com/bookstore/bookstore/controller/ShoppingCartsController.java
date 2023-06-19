@@ -25,6 +25,7 @@ public class ShoppingCartsController {
     public ShoppingCarts addToCart(@RequestBody List<DShoppingCart> dShoppingCartList){
         return shoppingCartsService.addToCart(dShoppingCartList);
     }
+    // TODO: shopping cart modification, add & delete from cart
     @PatchMapping("shoppingCart/{uid}")
     @Operation(summary = "Clear cart")
     public ShoppingCarts emptyCart(@PathVariable long uid){

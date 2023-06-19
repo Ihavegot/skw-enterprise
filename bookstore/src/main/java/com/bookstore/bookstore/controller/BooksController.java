@@ -37,6 +37,7 @@ public class BooksController {
         return booksService.addSignleBook(dBooks);
     }
     // Only logged admin
+    // TODO: change put to patch
     @PutMapping("/books/{id}")
     @Operation(summary = "Update book by book id")
     public Optional<Books> updateSingleBook(@PathVariable Long id, @RequestBody DBooks dBooks){
