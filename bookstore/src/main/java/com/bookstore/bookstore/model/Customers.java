@@ -1,5 +1,6 @@
 package com.bookstore.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,5 +18,6 @@ public class Customers {
     private String username;
     private String password;
     private String email;
+    @JsonIgnore
     private String authorities;
 }
