@@ -22,7 +22,7 @@ public class ShoppingCartsController {
     }
     @PatchMapping("/shoppingCarts")
     @Operation(summary = "Add item to cart")
-    public ShoppingCarts addToCart(@RequestBody List<DShoppingCart> dShoppingCartList){
+    public ShoppingCarts addToCart(@RequestBody DShoppingCart dShoppingCartList){
         return shoppingCartsService.addToCart(dShoppingCartList);
     }
     // TODO: shopping cart modification, add & delete from cart
@@ -31,5 +31,4 @@ public class ShoppingCartsController {
     public ShoppingCarts emptyCart(@PathVariable long uid){
         return shoppingCartsService.emptyCart(uid);
     }
-    // TODO: edit cart
 }
