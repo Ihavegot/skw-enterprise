@@ -20,11 +20,10 @@ public class ShoppingCartsController {
     public Optional<ShoppingCarts> getSingleCart(@PathVariable long uid){
         return shoppingCartsService.getCart(uid);
     }
-    // TODO: delete uid variable, get uid in service
-    @PostMapping("/shoppingCarts/{uid}")
+    @PatchMapping("/shoppingCarts")
     @Operation(summary = "Add item to cart")
-    public ShoppingCarts addToCart(@PathVariable long uid, @RequestBody List<DShoppingCart> dShoppingCartList){
-        return shoppingCartsService.addToCart(uid, dShoppingCartList);
+    public ShoppingCarts addToCart(@RequestBody List<DShoppingCart> dShoppingCartList){
+        return shoppingCartsService.addToCart(dShoppingCartList);
     }
     @PatchMapping("shoppingCart/{uid}")
     @Operation(summary = "Clear cart")

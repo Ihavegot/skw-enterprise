@@ -6,6 +6,8 @@ import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.model.Customers;
 import com.bookstore.bookstore.repository.CustomersRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,6 +16,13 @@ import java.util.Optional;
 @Service
 public class CustomersService {
     private final CustomersRepository customersRepository;
+    private final ShoppingCartsService shoppingCartsService;
+    private long getCurrentUid(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Optional<Customers> uid = customersRepository.findByUsername(authentication.getName());
+        return uid.map(Customers::getId).orElse(0L);
+    }
+
     public Optional<Customers> getSingleCustomer(long id){
         return customersRepository.findById(id);
     }
@@ -21,12 +30,16 @@ public class CustomersService {
         return customersRepository.findByUsername(username);
     }
     public Customers addCustomer(DCustomer dCustomer){
+        // Add customer
         Customers newCustomer = new Customers();
         newCustomer.setAuthorities("ROLE_USER");
         newCustomer.setUsername(dCustomer.getUsername());
         newCustomer.setPassword(dCustomer.getPassword());
         newCustomer.setEmail(dCustomer.getEmail());
-        return customersRepository.save(newCustomer);
+        Customers output = customersRepository.save(newCustomer);
+        // Create customer cart
+        shoppingCartsService.createCart(output.getId());
+        return output;
     }
     public void deleteCustomer(long id){
         customersRepository.deleteById(id);
