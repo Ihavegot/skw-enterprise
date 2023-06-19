@@ -5,6 +5,9 @@ import com.bookstore.bookstore.model.Customers;
 import com.bookstore.bookstore.service.CustomersService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -13,7 +16,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomersController {
     private final CustomersService customersService;
-    // TODO: get all customers
+    @GetMapping("/customers")
+    @Operation(summary = "Get single customer by user id")
+    public Page<Customers> getAllCustomers(@ParameterObject Pageable pageable){
+        return customersService.getAllCustomers(pageable);
+    }
     @GetMapping("/customers/{id}")
     @Operation(summary = "Get single customer by user id")
     public Optional<Customers> getSingleCustomer(@PathVariable long id){
