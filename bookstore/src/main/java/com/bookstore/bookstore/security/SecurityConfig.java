@@ -100,18 +100,18 @@ public class SecurityConfig {
     @Bean
     @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, UserDetailsService userDetailsService) throws Exception {
-        httpSecurity
-                .csrf().disable()
+        httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/h2-console/**").permitAll()
                 //Everyone
                 .requestMatchers(HttpMethod.GET, "/books/**").permitAll()
                 // Non auth
                 .requestMatchers(HttpMethod.POST, "/customers").permitAll()
                 // User
-                .requestMatchers(HttpMethod.GET, "customers/**").authenticated()
-                .requestMatchers(HttpMethod.DELETE, "customers/**").authenticated()
-                .requestMatchers(HttpMethod.PATCH, "customers/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/customers/**").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/customers/**").authenticated()
+                .requestMatchers(HttpMethod.PATCH, "/customers/**").authenticated()
                 // User
                 .requestMatchers(HttpMethod.POST, "/orders").authenticated()
                 .requestMatchers(HttpMethod.GET, "/orders/**").authenticated()
@@ -121,6 +121,9 @@ public class SecurityConfig {
                 // Option & header
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.HEAD, "/**").permitAll()
+                // Authenticated
+                .requestMatchers(HttpMethod.POST, "/pay/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/pay/**").authenticated()
                 // Admin
                 .requestMatchers("/books/**").hasRole("ADMIN")
                 .requestMatchers("/orders/**").hasRole("ADMIN")

@@ -2,6 +2,7 @@ package com.bookstore.bookstore.service;
 
 import com.bookstore.bookstore.DTO.DOrderState;
 import com.bookstore.bookstore.DTO.DOrders;
+import com.bookstore.bookstore.controller.PaypalController;
 import com.bookstore.bookstore.model.*;
 import com.bookstore.bookstore.repository.CustomersRepository;
 import com.bookstore.bookstore.repository.OrdersRepository;
@@ -20,6 +21,7 @@ public class OrdersService {
     private final OrdersRepository ordersRepository;
     private final CustomersRepository customersRepository;
     private final ShoppingCartsService shoppingCartsService;
+    private final PaypalService paypalService;
     private long getCurrentUid(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<Customers> uid = customersRepository.findByUsername(authentication.getName());
@@ -29,7 +31,9 @@ public class OrdersService {
         Optional<ShoppingCarts> userShoppingSart = shoppingCartsService.getCart(getCurrentUid());
         return userShoppingSart.filter(shoppingCarts -> !shoppingCarts.getCartItems().isEmpty()).isPresent();
     }
-
+    public Optional<Orders> getSingleOrder(long id){
+        return ordersRepository.findById(id);
+    }
     public Page<Orders> getAllUsersOrders(Pageable pageable){
         return ordersRepository.findAll(pageable);
     }
@@ -53,14 +57,15 @@ public class OrdersService {
             newOrder.getCartItems().add(ci);
         }
         newOrder.setTotalPrice(userShoppingCart.get().getTotalPrice());
-        newOrder.setStatus("CONFIRMING ORDER");
+        newOrder.setStatus("WAITING FOR PAYMENT");
         shoppingCartsService.emptyCart();
 
         Orders output = ordersRepository.save(newOrder);
         for(CartItems ci:output.getCartItems()){
             ci.setOrders(newOrder);
         }
-        return ordersRepository.save(newOrder);
+        Orders saved = ordersRepository.save(newOrder);
+        return saved;
     }
     public Orders updateOrderState(long id, DOrderState state){
         Optional<Orders> orders = ordersRepository.findById(id);
