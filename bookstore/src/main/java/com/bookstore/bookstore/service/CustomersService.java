@@ -19,6 +19,11 @@ import java.util.Optional;
 public class CustomersService {
     private final CustomersRepository customersRepository;
     private final ShoppingCartsService shoppingCartsService;
+    public long getCurrentUid() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Optional<Customers> uid = customersRepository.findByUsername(authentication.getName());
+        return uid.map(Customers::getId).orElse(0L);
+    }
     public Page<Customers> getAllCustomers(Pageable pageable){
         return customersRepository.findAll(pageable);
     }
