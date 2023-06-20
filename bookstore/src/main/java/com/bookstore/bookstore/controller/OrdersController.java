@@ -14,22 +14,24 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/orders")
 public class OrdersController {
     private final OrdersService ordersService;
     // Only logged admin
-    @GetMapping("/orders")
+    @GetMapping
     @Operation(summary = "Get all orders")
     public Page<Orders> getAllOrders(@ParameterObject Pageable pageable){
         return ordersService.getAllUsersOrders(pageable);
     }
     // Only logged admin
-    @GetMapping("/orders/{uid}")
+    @GetMapping("{uid}")
     @Operation(summary = "Get single customer orders by user id")
     public Page<Orders> getSingleUserOrders(@PathVariable long uid, @ParameterObject Pageable pageable){
         return ordersService.getSingleUserOrders(uid, pageable);
     }
     // Only logged user
-    @PostMapping("/orders")
+    // TODO: do not order when basket empty
+    @PostMapping
     @Operation(summary = "Add order")
     public Orders addOrders(@RequestBody DOrders dOrder){
         return ordersService.addOrders(dOrder);
@@ -42,8 +44,8 @@ public class OrdersController {
 //    }
 //    ------------------------------------------------------------------------------------------------------------------
     // Only logged admin
-    @PatchMapping("orders/{id}")
-    @Operation(summary = "Update order by order id")
+    @PatchMapping("{id}")
+    @Operation(summary = "Update order state by order id")
     public Orders updateOrderState(@PathVariable long id, @RequestBody DOrderState state){
         return ordersService.updateOrderState(id, state);
     }

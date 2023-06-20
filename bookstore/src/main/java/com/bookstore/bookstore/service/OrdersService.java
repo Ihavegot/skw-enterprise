@@ -46,7 +46,7 @@ public class OrdersService {
         }
         newOrder.setTotalPrice(userShoppingCart.get().getTotalPrice());
         newOrder.setStatus("CONFIRMING ORDER");
-        shoppingCartsService.emptyCart(getCurrentUid());
+        shoppingCartsService.emptyCart();
 
         Orders output = ordersRepository.save(newOrder);
         for(CartItems ci:output.getCartItems()){

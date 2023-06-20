@@ -28,6 +28,7 @@ public class BooksService {
         newBook.setTitle(dBooks.getTitle());
         newBook.setAuthor(dBooks.getAuthor());
         newBook.setGenre(dBooks.getGenre());
+        newBook.setPrice(dBooks.getPrice());
         return booksRepository.save(newBook);
     }
     public Optional<Books> updateSingleBook(Long id, DBooks dBooks){
@@ -40,6 +41,9 @@ public class BooksService {
             }
             if(dBooks.getGenre() != null){
                 b.setGenre(dBooks.getGenre());
+            }
+            if(dBooks.getPrice() != 0){
+                b.setPrice(dBooks.getPrice());
             }
             return booksRepository.save(b);
         });

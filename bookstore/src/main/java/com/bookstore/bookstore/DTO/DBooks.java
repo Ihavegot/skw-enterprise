@@ -11,4 +11,5 @@ public class DBooks {
     private String title;
     private String author;
     private String genre;
+    private double price;
 }

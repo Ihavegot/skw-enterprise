@@ -15,35 +15,37 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/books")
 public class BooksController {
     private final BooksService booksService;
 
     // Everyone
-    @GetMapping("/books")
+    @GetMapping
     @Operation(summary = "Get all books")
     public Page<Books> getAllBooks(@ParameterObject Pageable pageable){
         return booksService.getAllBooks(pageable);
     }
     // Everyone
-    @GetMapping("/books/{id}")
+    @GetMapping("{id}")
     @Operation(summary = "Get single book by book id")
     public Books getSingleBook(@PathVariable long id){
         return booksService.getSingleBook(id);
     }
     // Only logged admin
-    @PostMapping("/books")
+    // TODO: add price in update and add
+    @PostMapping
     @Operation(summary = "Add book")
     public Books addSingleBook(@RequestBody DBooks dBooks){
         return booksService.addSignleBook(dBooks);
     }
     // Only logged admin
-    @PatchMapping("/books/{id}")
+    @PatchMapping("{id}")
     @Operation(summary = "Update book by book id")
     public Optional<Books> updateSingleBook(@PathVariable Long id, @RequestBody DBooks dBooks){
         return booksService.updateSingleBook(id, dBooks);
     }
     // Only logged admin
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("{id}")
     @Operation(summary = "Delete book by book id")
     public void deleteSingleBook(@PathVariable long id){
         booksService.deleteSingleBook(id);

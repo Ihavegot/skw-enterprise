@@ -82,10 +82,13 @@ public class ShoppingCartsService {
         return shoppingCartsRepository.save(userCart);
     }
 
-    public ShoppingCarts emptyCart(long uid) {
-        ShoppingCarts userCart = shoppingCartsRepository.findByUid(uid);
+    public ShoppingCarts emptyCart() {
+        ShoppingCarts userCart = shoppingCartsRepository.findByUid(getCurrentUid());
         userCart.setTotalPrice(0.0);
-        userCart.getCartItems().clear();
+        for(CartItems ci: userCart.getCartItems()){
+            ci.setShoppingCarts(null);
+            cartItemsRepository.save(ci);
+        }
         return shoppingCartsRepository.save(userCart);
     }
 
