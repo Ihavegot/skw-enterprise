@@ -10,6 +10,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.context.annotation.Description;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -32,15 +33,18 @@ public class BooksController {
     }
     @PostMapping
     @Operation(summary = "Add book")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Books addSingleBook(@RequestBody DBooks dBooks){
         return booksService.addSignleBook(dBooks);
     }
     @PatchMapping("{id}")
     @Operation(summary = "Update book by book id")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Optional<Books> updateSingleBook(@PathVariable Long id, @RequestBody DBooks dBooks){
         return booksService.updateSingleBook(id, dBooks);
     }
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Delete book by book id")
     public void deleteSingleBook(@PathVariable long id){
         booksService.deleteSingleBook(id);

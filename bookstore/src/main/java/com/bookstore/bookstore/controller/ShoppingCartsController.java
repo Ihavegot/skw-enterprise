@@ -25,19 +25,19 @@ public class ShoppingCartsController {
     }
     @PatchMapping("/add")
     @Operation(summary = "Add item to cart")
-    @PreAuthorize("@customersService.getSingleCustomer(@customersService.getCurrentUid()).get().username == authentication.name or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public ShoppingCarts addToCart(@RequestBody DShoppingCart dShoppingCartList){
         return shoppingCartsService.addToCart(dShoppingCartList);
     }
     @PatchMapping("/remove")
     @Operation(summary = "Remove item from cart")
-    @PreAuthorize("@customersService.getSingleCustomer(@customersService.getCurrentUid()).get().username == authentication.name or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public ShoppingCarts removeFromCart(@RequestBody DShoppingCart dShoppingCartList){
         return shoppingCartsService.removeFromCart(dShoppingCartList);
     }
     @PatchMapping("/clean")
     @Operation(summary = "Clear cart")
-    @PreAuthorize("@customersService.getSingleCustomer(@customersService.getCurrentUid()).get().username == authentication.name or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public ShoppingCarts emptyCart(){
         return shoppingCartsService.emptyCart();
     }

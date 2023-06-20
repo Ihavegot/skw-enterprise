@@ -36,7 +36,7 @@ public class OrdersController {
     }
     @PostMapping
     @Operation(summary = "Add order")
-    @PreAuthorize("@customersService.getSingleCustomer(@customersService.getCurrentUid()).get().username == authentication.name or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public Orders addOrders(@RequestBody DOrders dOrder){
         return ordersService.addOrders(dOrder);
     }

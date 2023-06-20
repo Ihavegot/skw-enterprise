@@ -11,6 +11,7 @@ import com.paypal.api.payments.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,7 @@ public class PaypalController {
     public static final String CANCEL_URL = "pay/cancel";
 
     @PostMapping("/pay/{oid}")
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public String payment(@PathVariable long oid) {
         try {
             Optional<Orders> order = ordersService.getSingleOrder(oid);
@@ -62,11 +64,13 @@ public class PaypalController {
     }
 
     @GetMapping(value = CANCEL_URL)
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public String cancelPay() {
         return "/";
     }
 
     @GetMapping(value = SUCCESS_URL)
+    @PreAuthorize("hasRole('USER') or hasRole('ROLE_ADMIN')")
     public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
         try {
             Payment payment = service.executePayment(paymentId, payerId);
