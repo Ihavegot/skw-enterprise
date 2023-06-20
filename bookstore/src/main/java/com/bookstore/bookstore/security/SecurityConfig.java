@@ -165,9 +165,9 @@ public class SecurityConfig {
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient
-                .withId("swagger")
-                .clientId("swagger")
-                .clientSecret("{noop}swagger")
+                .withId("bookstore")
+                .clientId("bookstore")
+                .clientSecret("{noop}bookstore")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
