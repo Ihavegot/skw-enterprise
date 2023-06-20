@@ -13,6 +13,7 @@ import lombok.Setter;
 public class CartItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private long id;
     private int quantity;
     @ManyToOne(fetch = FetchType.EAGER)

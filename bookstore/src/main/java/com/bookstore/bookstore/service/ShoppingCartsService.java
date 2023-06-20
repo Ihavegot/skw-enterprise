@@ -92,6 +92,34 @@ public class ShoppingCartsService {
         return shoppingCartsRepository.save(userCart);
     }
 
+    public ShoppingCarts removeFromCart(DShoppingCart dShoppingCart){
+        ShoppingCarts userCart = shoppingCartsRepository.findByUid(getCurrentUid());
+        Set<CartItems> newCartItemsSet = new HashSet<>();
+        for(CartItems ci: userCart.getCartItems()){
+            if(ci.getBooks().getId() == dShoppingCart.getBid()){
+                if(ci.getQuantity()-dShoppingCart.getQuantity() > 0){
+                    ci.setQuantity(ci.getQuantity()-dShoppingCart.getQuantity());
+                    ci.setBooks(booksService.getSingleBook(dShoppingCart.getBid()));
+                    newCartItemsSet.add(ci);
+                }else{
+                    ci.setShoppingCarts(null);
+                    cartItemsRepository.save(ci);
+                }
+            }else{
+                newCartItemsSet.add(ci);
+            }
+            userCart.setTotalPrice(userCart.getTotalPrice() + ci.getBooks().getPrice()*ci.getQuantity());
+        }
+
+        double totalPrice = 0;
+        for (CartItems ci : newCartItemsSet) {
+            totalPrice += ci.getBooks().getPrice() * ci.getQuantity();
+        }
+        userCart.setTotalPrice(totalPrice);
+        userCart.setCartItems(newCartItemsSet);
+        return shoppingCartsRepository.save(userCart);
+    }
+
     public void createCart(long uid) {
         ShoppingCarts newShoppingCart = new ShoppingCarts();
         newShoppingCart.setUid(uid);

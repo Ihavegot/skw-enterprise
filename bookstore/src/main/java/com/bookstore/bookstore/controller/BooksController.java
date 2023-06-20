@@ -32,7 +32,6 @@ public class BooksController {
         return booksService.getSingleBook(id);
     }
     // Only logged admin
-    // TODO: add price in update and add
     @PostMapping
     @Operation(summary = "Add book")
     public Books addSingleBook(@RequestBody DBooks dBooks){
