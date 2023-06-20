@@ -29,7 +29,6 @@ public class ShoppingCartsController {
     public ShoppingCarts removeFromCart(@RequestBody DShoppingCart dShoppingCartList){
         return shoppingCartsService.removeFromCart(dShoppingCartList);
     }
-    // TODO: errors handling, exmp: when user tries to add book taht does not exist
     @PatchMapping("/clean")
     @Operation(summary = "Clear cart")
     public ShoppingCarts emptyCart(){

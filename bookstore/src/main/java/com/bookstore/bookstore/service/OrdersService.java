@@ -25,6 +25,11 @@ public class OrdersService {
         Optional<Customers> uid = customersRepository.findByUsername(authentication.getName());
         return uid.map(Customers::getId).orElse(0L);
     }
+    private boolean checkCart(){
+        Optional<ShoppingCarts> userShoppingSart = shoppingCartsService.getCart(getCurrentUid());
+        return userShoppingSart.filter(shoppingCarts -> !shoppingCarts.getCartItems().isEmpty()).isPresent();
+    }
+
     public Page<Orders> getAllUsersOrders(Pageable pageable){
         return ordersRepository.findAll(pageable);
     }
@@ -32,6 +37,9 @@ public class OrdersService {
         return ordersRepository.findAllByUid(uid, pageable);
     }
     public Orders addOrders(DOrders dOrder){
+        if(!checkCart()){
+            return null;
+        }
         Orders newOrder = new Orders();
         newOrder.setUid(getCurrentUid());
         newOrder.setOrderdate(Calendar.getInstance().getTime());
