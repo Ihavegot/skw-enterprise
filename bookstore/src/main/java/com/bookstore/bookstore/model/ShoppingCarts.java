@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -16,6 +15,6 @@ public class ShoppingCarts {
     private long id;
     private long uid;
     private Double totalPrice;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shoppingCarts")
     private Set<CartItems> cartItems;
 }

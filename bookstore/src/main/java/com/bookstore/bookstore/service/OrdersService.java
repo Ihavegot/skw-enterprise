@@ -44,10 +44,14 @@ public class OrdersService {
         for(CartItems ci:cartItemsSet){
             newOrder.getCartItems().add(ci);
         }
-
         newOrder.setTotalPrice(userShoppingCart.get().getTotalPrice());
         newOrder.setStatus("CONFIRMING ORDER");
         shoppingCartsService.emptyCart(getCurrentUid());
+
+        Orders output = ordersRepository.save(newOrder);
+        for(CartItems ci:output.getCartItems()){
+            ci.setOrders(newOrder);
+        }
         return ordersRepository.save(newOrder);
     }
     public Orders updateOrderState(long id, DOrderState state){
@@ -57,8 +61,5 @@ public class OrdersService {
             return ordersRepository.save(orders.get());
         }
         return null;
-    }
-    public void deleteOrders(long id){
-        ordersRepository.deleteById(id);
     }
 }

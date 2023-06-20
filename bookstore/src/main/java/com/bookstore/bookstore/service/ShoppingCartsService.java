@@ -5,6 +5,7 @@ import com.bookstore.bookstore.model.Books;
 import com.bookstore.bookstore.model.CartItems;
 import com.bookstore.bookstore.model.Customers;
 import com.bookstore.bookstore.model.ShoppingCarts;
+import com.bookstore.bookstore.repository.CartItemsRepository;
 import com.bookstore.bookstore.repository.CustomersRepository;
 import com.bookstore.bookstore.repository.ShoppingCartsRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class ShoppingCartsService {
     private final ShoppingCartsRepository shoppingCartsRepository;
     private final CustomersRepository customersRepository;
     private final BooksService booksService;
+    private final CartItemsRepository cartItemsRepository;
 
     private long getCurrentUid() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -39,6 +41,7 @@ public class ShoppingCartsService {
         Set<CartItems> cartItemsSet = userCart.getCartItems();
         for(CartItems ci:cartItemsSet){
             if(ci.getBooks().equals(book)){
+                ci.setShoppingCarts(userCart);
                 ci.setQuantity(ci.getQuantity()+1);
             }
         }
@@ -54,8 +57,6 @@ public class ShoppingCartsService {
         }
         return false;
     }
-
-
     public ShoppingCarts addToCart(DShoppingCart dShoppingCartList) {
         long uid = getCurrentUid();
         ShoppingCarts userCart = shoppingCartsRepository.findByUid(uid);
@@ -66,6 +67,7 @@ public class ShoppingCartsService {
             userCart.setCartItems(newSet);
         }else {
             CartItems cartItems = new CartItems();
+            cartItems.setShoppingCarts(userCart);
             cartItems.setBooks(booksService.getSingleBook(dShoppingCartList.getBid()));
             cartItems.setQuantity(dShoppingCartList.getQuantity());
             userCart.getCartItems().add(cartItems);

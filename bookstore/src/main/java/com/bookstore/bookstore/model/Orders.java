@@ -24,6 +24,6 @@ public class Orders {
     private String address;
     private Double totalPrice;
     private String status;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
     private Set<CartItems> cartItems;
 }

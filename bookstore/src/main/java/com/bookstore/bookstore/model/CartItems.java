@@ -1,11 +1,10 @@
 package com.bookstore.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Entity
 @Getter
@@ -18,7 +17,11 @@ public class CartItems {
     private int quantity;
     @ManyToOne(fetch = FetchType.EAGER)
     private Books books;
-    public CartItems() {
-
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Orders orders;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private ShoppingCarts shoppingCarts;
+    public CartItems() {}
 }

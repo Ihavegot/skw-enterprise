@@ -20,11 +20,9 @@ public class BooksService {
     public Page<Books> getAllBooks(Pageable pageable){
         return booksRepository.findAll(pageable);
     }
-
     public Books getSingleBook(long id){
         return booksRepository.findById(id).orElseThrow();
     }
-
     public Books addSignleBook(DBooks dBooks){
         Books newBook = new Books();
         newBook.setTitle(dBooks.getTitle());
@@ -32,7 +30,6 @@ public class BooksService {
         newBook.setGenre(dBooks.getGenre());
         return booksRepository.save(newBook);
     }
-
     public Optional<Books> updateSingleBook(Long id, DBooks dBooks){
         return booksRepository.findById(id).map(b -> {
             if (dBooks.getAuthor() != null) {
@@ -47,7 +44,6 @@ public class BooksService {
             return booksRepository.save(b);
         });
     }
-
     public void deleteSingleBook(long id){
         booksRepository.deleteById(id);
     }
