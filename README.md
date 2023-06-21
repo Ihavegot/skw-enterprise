@@ -33,6 +33,3 @@ Final project for SKW - Enterprise laboratory
 - Login: lukasz123
 - Password: lukasz123
 
-#### Paypal sandbox
-- E-mail: sb-fe4xp26366464@personal.example.com
-- Password: W)>|5j].
